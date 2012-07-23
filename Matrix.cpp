@@ -51,9 +51,15 @@ Mat Mat::row( int i ) {
 
 
 // Extract column j from the matrix
-Mat Mat::col( int j ) {
 
+Mat Mat::col( int j ) {
+for (int i=0; i<=rows; i++) {
+    int x = i * cols + j;
+    array[i]=x;
+    Mat (rows, 1, array[i]);
 }
+}
+
 
 
 // Function OVERLOADING! We discussed this in class, and in some notes I sent you.
