@@ -34,9 +34,10 @@ Mat::~Mat() {
 
 // Don't do more work here, just call the constructor defined previously!
 Mat Mat::zeros( int n, int m ) {
-for( int rows = 0; rows < n; rows=rows+1 )
-  for( int cols = 0; cols < m; cols=cols+1)
-     data[rows][cols] = 0;
+for (int a=0; a<n*m+m; a=a+1)
+    data[a] = 0;
+void Mat.show();
+
     
 
 for( int rows = 0; rows < n; rows=rows+1)
