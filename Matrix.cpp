@@ -33,8 +33,10 @@ Mat::~Mat() {
 
 
 // Don't do more work here, just call the constructor defined previously!
-Mat Mat::zeros( int n, int m ) {
-
+Mat Mat::zeros( int n, int m ) 
+{
+for (int a=0; a<n*m; a=a+1)
+    data[a] = 0;
 }
 
 
