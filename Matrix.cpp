@@ -53,7 +53,7 @@ Mat::Mat( const Mat& input_matrix ) {
 
 // DESTRUCTOR
 Mat::~Mat() {
-
+delete []data;
 }
 
 
