@@ -36,7 +36,7 @@ Mat::~Mat() {
 Mat Mat::zeros( int n, int m ) {
 for (int a=0; a<n*m+m; a=a+1)
     data[a] = 0;
-void Mat.show();
+void show();
 
     
 
