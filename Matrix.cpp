@@ -40,6 +40,11 @@ Mat Mat::zeros( int n, int m ) {
 
 // Call another previously defined constructor
 Mat Mat::eye( int n, int m ) {
+      Mat A(n,n);
+        for( int i = 0; i < n; i++ ) {
+                int k = i*(n+i);
+                A.data[k] = 1;
+        }
 
 }
 
