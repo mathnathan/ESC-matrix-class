@@ -5,6 +5,13 @@
 // CONSTRUCTOR
 Mat::Mat( int n, int m ) {
 
+rows=n;
+columns=m;
+num_elements=n*m;
+data=new  double[num_elements];
+for (i=0; i<num_elements;i++)
+{data[i]=0};}
+
 }
 
 
