@@ -34,6 +34,17 @@ Mat::~Mat() {
 
 // Don't do more work here, just call the constructor defined previously!
 Mat Mat::zeros( int n, int m ) {
+for( int rows = 0; rows < n; rows=rows+1 )
+  for( int cols = 0; cols < m; cols=cols+1)
+     array[rows][cols] = 0;
+    
+
+for( int rows = 0; rows < n; rows=rows+1)
+{
+     for( int cols = 0; cols < m; cols=cols+1 )
+       cout <<  array[rows][cols] << " ";
+       cout << "\n";
+}
 
 }
 
