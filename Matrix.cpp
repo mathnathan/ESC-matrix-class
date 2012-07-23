@@ -10,8 +10,19 @@ Mat::Mat( int n, int m ) {
 
 // CONSTRUCTOR
 Mat::Mat( int n, int m, double* input_array ) {
+        rows = n;
+        cols = m;
+        num_elements = n*m;
+        data = new double[num_elements];
+
+        if(sizeof(num_elements)!= n*m)
+           cout << "error";
+        for(int i=0; i<num_elements; i++) {
+           data[i] = input_array[i]
+        }
 
 }
+
 
 
 // CONSTRUCTOR
