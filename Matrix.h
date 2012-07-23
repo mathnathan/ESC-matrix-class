@@ -16,13 +16,17 @@ class Mat {
 		// Create an nxm matrix initialized to all zeros
 		Mat zeros( int n, int m );
 		// Create an nxm identity matrix
-		Mat eye( int n, int m );
+		Mat eye( int n );
 		// Extract row i from the matrix
 		Mat row( int i );
 		// Extract column j from the matrix
 		Mat col( int j );
 		// Overload the () operator for element extraction
 		double operator()( int i, int j );
+        // This is the matrix multiplication routine
+        Mat mul( const Mat& B );
+        // This is the matrix addition routine
+        Mat add( const Mat& B );
 		// We will use this function to print out small matrices for testing purposes
 		void show();
 		// Can you guys think of more cool things we might want to do with a matrix?
