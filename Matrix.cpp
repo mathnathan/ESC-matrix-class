@@ -16,6 +16,13 @@ Mat::Mat( int n, int m, double* input_array ) {
 
 // CONSTRUCTOR
 Mat::Mat( int n, int m, double value ) {
+        rows = n;
+        cols = m;
+        num_elements = n * m;
+        data = new double [num_elements];
+        for (int i=0; i<num_elements; i++)
+                data[i] = value;
+}
 
 }
 
