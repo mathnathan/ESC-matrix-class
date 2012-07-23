@@ -36,13 +36,13 @@ Mat::~Mat() {
 Mat Mat::zeros( int n, int m ) {
 for( int rows = 0; rows < n; rows=rows+1 )
   for( int cols = 0; cols < m; cols=cols+1)
-     array[rows][cols] = 0;
+     data[rows][cols] = 0;
     
 
 for( int rows = 0; rows < n; rows=rows+1)
 {
      for( int cols = 0; cols < m; cols=cols+1 )
-       cout <<  array[rows][cols] << " ";
+       cout <<  data[rows][cols] << " ";
        cout << "\n";
 }
 
