@@ -50,12 +50,12 @@ Mat::Mat( int n, int m, double value ) {
 Mat::Mat( const Mat& input_matrix ) {
     printf( "Inside the COPY CONSTRUCTOR\n" );
 
-    int rows = input_matrix.rows;
-    int cols = input_matrix.cols;
-	int num_elements = input_matrix.num_elements; 
-	data = new double [input_matrix.num_elements];
-       	 for (int k = 0; k <= input_matrix.num_elements; k++) 
-            data [k] = input_matrix[k]; 
+    rows = input_matrix.rows;
+    cols = input_matrix.cols;
+	num_elements = input_matrix.num_elements; 
+	data = new double[input_matrix.num_elements];
+	for (int k = 0; k <= input_matrix.num_elements; k++) 
+		data[k] = input_matrix.data[k]; 
 
 }
 
@@ -63,7 +63,7 @@ Mat::Mat( const Mat& input_matrix ) {
 Mat::~Mat() {
     printf( "Inside the DESTRUCTOR\n" );
 
-    delete []data;
+    delete [] data;
 
 }
 
@@ -71,14 +71,8 @@ Mat::~Mat() {
 Mat Mat::zeros( int n, int m ) {
     printf( "Inside the ZEROS function with params( n=%d, m=%d )\n", n, m );
 
-    // We need to make a new matrix here, and return it
-    // What about something like this?
-    //      Mat zeros( n, m, 0 ); 
-    //      return zeros;
-    // Notice how we just call a constructor from before? This way we do less
-    // programming and provide more functionality (Nathan Crock)
-    Mat zeros(n,m,0); 
-    return zeros;  //should have checked above for other useful constructors...sorry about that. 
+    Mat zero(n,m,0.0); 
+    return zero;  
 
 }
 
@@ -128,12 +122,15 @@ Mat Mat::mul( const Mat& B ) {
 // Extract row i from the matrix
 Mat Mat::row( int i ) {
     printf( "Inside the ROW function with param( i=%d )\n", i );
-double array[j]
+	double array[cols];
 
-for (int j=0, j<=cols, j++){
-    int x= i*cols+j; 
-	array[j]=data[x];}
-	Mat(1, cols, array[j]);
+	for (int j=0; j<=cols; j++) {
+		int x= i*cols+j; 
+		array[j]=data[x];
+	}
+		
+	return Mat(1, cols, array);
+		
 }
 
 
@@ -168,8 +165,9 @@ Mat Mat::add( const Mat& B ) {
 
 // Function OVERLOADING! We discussed this in class, and in some notes I sent you.
 double Mat::operator()( int i, int j ) {
-    return data[(i * cols) + j];
     printf( "Inside the OPERATOR() function with params( i=%d, j=%d )\n", i, j );
+
+    return data[(i * cols) + j];
 
 }
 
