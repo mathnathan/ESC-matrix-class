@@ -125,7 +125,7 @@ Mat Mat::row( int i ) {
 	double array[cols];
 
 	for (int j=0; j<=cols; j++) {
-		int x= i*cols+j; 
+		int x = i*cols+j; 
 		array[j]=data[x];
 	}
 		
@@ -137,15 +137,16 @@ Mat Mat::row( int i ) {
 // Extract column j from the matrix
 Mat Mat::col( int j ) {
     printf( "Inside the COL function with param( j=%d )\n", j );
-double array [rows];
+    double array[rows];
 
-for (int i=0; i<=rows; i++) {
-    int x = i * cols + j;
-    array[i]=data[x];
+    for (int i=0; i<=rows; i++) {
+        int x = i * cols + j;
+        array[i]=data[x];
     }
-return Mat(rows, 1, array);
-}
 
+    return Mat(rows, 1, array);
+
+}
 
 
 Mat Mat::add( const Mat& B ) {
