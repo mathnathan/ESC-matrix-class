@@ -50,6 +50,13 @@ Mat::Mat( int n, int m, double value ) {
 Mat::Mat( const Mat& input_matrix ) {
     printf( "Inside the COPY CONSTRUCTOR\n" );
 
+    int rows = input_matrix.rows;
+    int cols = input_matrix.cols;
+	int num_elements = input_matrix.num_elements; 
+	data = new double [input_matrix.num_elements];
+       	 for (int k = 0; k <= input_matrix.num_elements; k++) 
+            data [k] = input_matrix[k]; 
+
 }
 
 // DESTRUCTOR
