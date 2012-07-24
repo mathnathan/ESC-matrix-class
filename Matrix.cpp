@@ -137,26 +137,16 @@ Mat Mat::row( int i ) {
 // Extract column j from the matrix
 Mat Mat::col( int j ) {
     printf( "Inside the COL function with param( j=%d )\n", j );
+double array [rows];
 
-    for (int i=0; i<=rows; i++) {
-        // x is actually the INDEX right? So you want to use x to access the
-        // elements in data and put them in array. Like this
-        // array[i] = data[x]; OR
-        // array[i] = data[i*cols+j];
-        int x = i * cols + j;
-        // array has not been declared! You need to dynamically allocate it
-        // above, before this line will work
-        // I'm going to comment it out for now so that the program will compile. 
-        // When you're ready uncomment it and compile to see the error.
-        //array[i]=x;
-        // This doens't work because you're making a new matrix every loop!!
-        // You want this line outside of the for loop. PLUS you aren't
-        // returning this. You want to actually return this matrix
-        // so add a return statement before it.
-        //Mat(rows, 1, array[i]);
+for (int i=0; i<=rows; i++) {
+    int x = i * cols + j;
+    array[i]=data[x];
     }
-
+return Mat(rows, 1, array);
 }
+
+
 
 Mat Mat::add( const Mat& B ) {
     printf( "Inside the ADD function\n" );
