@@ -156,6 +156,7 @@ Mat Mat::add( const Mat& B ) {
 
 // Function OVERLOADING! We discussed this in class, and in some notes I sent you.
 double Mat::operator()( int i, int j ) {
+    return data[(i * cols) + j];
     printf( "Inside the OPERATOR() function with params( i=%d, j=%d )\n", i, j );
 
 }
