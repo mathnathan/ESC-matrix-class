@@ -77,8 +77,8 @@ Mat Mat::zeros( int n, int m ) {
     //      return zeros;
     // Notice how we just call a constructor from before? This way we do less
     // programming and provide more functionality (Nathan Crock)
-    for (int a=0; a<n*m; a=a+1)
-        data[a] = 0;
+    Mat zeros(n,m,0); 
+    return zeros;  //should have checked above for other useful constructors...sorry about that. 
 
 }
 
