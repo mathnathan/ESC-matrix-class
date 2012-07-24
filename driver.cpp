@@ -5,12 +5,18 @@ int main() {
 
 	double input[6] = {1,2,3,4,5,6};
 	Mat A( 2, 3, input );
+    A.show();
 
-	for( int i = 0; i < 2; i++ ) {
-		for (int j = 0; j < 3; j++ ) {
-			printf( "A(%d,%d) = %f\n", i, j, A(i,j) );
-		}
-	}
+    Mat B = A;
+    B.show();
+
+    Mat C = B.eye(5);
+    C.show();
+
+    Mat Arow1 = A.row(1);
+    Arow1.show();
+    Mat Acol2 = A.col(2);
+    Acol2.show();
 		
 	return 0;
 

@@ -165,9 +165,12 @@ double Mat::operator()( int i, int j ) {
 // Use this to print out small matrices to aid in the testing of these routines
 void Mat::show() {
     printf( "Inside the SHOW function\n");
-	for (int k=0; k<num_elements; k++)	
-		cout << data[k] << " ";	
-		if (k%(cols-1) = 0)
-		cout << "\n";	
- }
+    printf( "cols = %d", cols );
+    printf( "\n\n| " );
+	for ( int k=0; k<num_elements; k++ ) {
+		printf( "%f ", data[k]);
+		if( (k+1)%cols == 0 && k != 0 && k != num_elements-1 )
+            printf( "|\n| " );	
+    }
+    printf( "|\n\n\n" );
 }
