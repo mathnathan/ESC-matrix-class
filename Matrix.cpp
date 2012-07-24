@@ -121,7 +121,12 @@ Mat Mat::mul( const Mat& B ) {
 // Extract row i from the matrix
 Mat Mat::row( int i ) {
     printf( "Inside the ROW function with param( i=%d )\n", i );
+double array[j]
 
+for (int j=0, j<=cols, j++){
+    int x= i*cols+j; 
+	array[j]=data[x];}
+	Mat(1, cols, array[j]);
 }
 
 
