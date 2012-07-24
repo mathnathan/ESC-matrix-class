@@ -151,7 +151,19 @@ Mat Mat::col( int j ) {
 
 Mat Mat::add( const Mat& B ) {
     printf( "Inside the ADD function\n" );
-
+if(cols != B.cols||rows!=B.rows)
+{
+	printf("Cannot add matrices, not the same size\n");
+  	return 0; 
+ }
+else
+{
+for(i=0; i<num_elements; i++)
+{ 
+	result[i] = data[i]+ B.data[i];
+ } 
+ return 0;
+ }
 }
 
 // Function OVERLOADING! We discussed this in class, and in some notes I sent you.
