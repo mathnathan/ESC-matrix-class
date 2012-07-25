@@ -10,8 +10,9 @@ Mat::Mat( int n, int m ) {
     cols=m;
     num_elements=n*m;
     data = new double[num_elements];
-    for (int i=0; i<num_elements; i++)
-    {data[i]=0;}
+    for (int i=0; i<num_elements; i++) {
+		data[i]=0.0;
+	}
 
 }
 
@@ -23,9 +24,6 @@ Mat::Mat( int n, int m, double* input_array ) {
     cols = m;
     num_elements = n*m;
     data = new double[num_elements];
-    // This doesn't quite work. We need to check the size of input_array, right? (Nathan Crock)
-    //if(sizeof(num_elements)!= n*m)
-       //cout << "error";
     for(int i=0; i<num_elements; i++) {
        data[i] = input_array[i];
     }
@@ -54,7 +52,7 @@ Mat::Mat( const Mat& input_matrix ) {
     cols = input_matrix.cols;
 	num_elements = input_matrix.num_elements; 
 	data = new double[input_matrix.num_elements];
-	for (int k = 0; k <= input_matrix.num_elements; k++) 
+	for (int k = 0; k < input_matrix.num_elements; k++) 
 		data[k] = input_matrix.data[k]; 
 
 }
@@ -94,29 +92,21 @@ Mat Mat::eye( int n ) {
 Mat Mat::mul( const Mat& B ) {
     printf( "Inside the MUL function\n" );
 
-    // looks good, but now
-    // You now need to change everything to operate on the input matrx B!
-    // for example, r2 stands for rows of B right? then r2 would be changed to
-    // B.rows and c1 is the cols of the original matrix right? So it would just be cols.
-    // You also need to create a NEW matrix to store the results in, THEN return it
-    // something like 
-    //      Mat r(B.rows,cols);
-    //      return r;
-    // would be appropriate, don't you think? I'm commenting it out so that it will compile
-    // for eveyone else. But when you're ready uncomment it and compile to
-    // check the errors and begin fixing
-
-    /*
-    if (r2 == c1) {
-        for(int k=0; k<r1*c2; k++) {
-            for (int i=0; i<c1; i++) {
-                r.data[k] += m1.data[(k/c2)*c1 + i]*m2.data[(k % c2)+i*c2];
-                }
-        }
-    }
+	if( cols == B.rows ) {
+		Mat C( rows, B.cols );
+		int row, col;
+		for (int k = 0; k < rows*B.cols; k++) {
+			row = k / B.cols;
+			col = k % B.cols;
+			for (int i = 0; i < cols; i++) {
+				C.data[k] += data[row*cols + i]*B.data[col + i*B.cols];
+			}
+		}
+		return C;
+	}
     else
-        cout << "Sorry, your matrices cannot be multiplied.\n";
-    */
+        printf( "Sorry, your matrices cannot be multiplied.\n" );
+
 }
 
 // Extract row i from the matrix
@@ -151,19 +141,17 @@ Mat Mat::col( int j ) {
 
 Mat Mat::add( const Mat& B ) {
     printf( "Inside the ADD function\n" );
-		if(cols != B.cols||rows!=B.rows)
-		{
+		if( cols != B.cols || rows != B.rows ) {
 			printf("Cannot add matrices, not the same size\n");
-		 }
-		else
-		{
+		}
+		else {
 
-		double result[num_elements];
-		for( int i=0; i<num_elements; i++)
-		{ 
-			result[i] = data[i]+ B.data[i];
-		 } 
-		 return Mat(rows, cols, result);
+			double result[num_elements];
+			for( int i=0; i<num_elements; i++) { 
+				result[i] = data[i] + B.data[i];
+		 	} 
+		 	
+			return Mat(rows, cols, result);
 		 }
 }
 
@@ -175,15 +163,54 @@ double Mat::operator()( int i, int j ) {
 
 }
 
+Mat Mat::operator=( Mat B ) {
+    printf( "Inside the OPERATOR=\n" );
+
+	if( B == *this ) 
+		return *this;
+	rows = B.rows;
+	cols = B.cols;
+	num_elements = B.num_elements;
+	delete [] data;
+	data = new double[B.num_elements];
+	for (int k = 0; k <= B.num_elements; k++) 
+		data[k] = B.data[k]; 
+
+	return *this;
+
+}
+
+bool Mat::operator==( Mat B ) {
+
+	if( data != B.data )
+		return false;
+	if( rows != B.rows )
+		return false;
+	if( cols != B.cols )
+		return false;
+	if( num_elements != B.num_elements )
+		return false;
+	return true;
+	
+}
+	
 // Use this to print out small matrices to aid in the testing of these routines
 void Mat::show() {
     printf( "Inside the SHOW function\n");
-    printf( "cols = %d", cols );
-    printf( "\n\n| " );
-	for ( int k=0; k<num_elements; k++ ) {
-		printf( "%f ", data[k]);
-		if( (k+1)%cols == 0 && k != 0 && k != num_elements-1 )
-            printf( "|\n| " );	
+	if ( cols == 1 ) {
+    	printf( "\n" );
+		for ( int k=0; k<num_elements; k++ ) {
+			printf( "| %f |\n", data[k]);
+		}
+    	printf( "\n" );
+	}
+	else {
+    	printf( "\n| " );
+		for ( int k=0; k<num_elements; k++ ) {
+			printf( "%f ", data[k]);
+			if( (k+1)%cols == 0 && k != 0 && k != num_elements-1 )
+            	printf( "|\n| " );	
+		}
+    	printf( "|\n\n" );
     }
-    printf( "|\n\n\n" );
 }

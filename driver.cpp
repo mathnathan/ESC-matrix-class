@@ -3,21 +3,26 @@
 
 int main() {
 
-	double input[6] = {1,2,3,4,5,6};
-	Mat A( 2, 3, input );
+	char cities[3] = {'A', 'B'};
+
+	double inputA[4] = {.5,.2,.5,.8};
+	Mat A( 2, 2, inputA );
     A.show();
 
-    Mat B = A;
+	double inputB[2] = {0, 1000};
+    Mat B( 2, 1, inputB );
     B.show();
-
-    Mat C = B.eye(5);
+    Mat C = A.mul( B );
+    C.show();
+	for( int i = 0; i < 1000; i++ )
+		C = A.mul( C );
     C.show();
 
-    Mat Arow1 = A.row(1);
-    Arow1.show();
-    Mat Acol2 = A.col(2);
-    Acol2.show();
-		
+	if( C(0,0) > C(1,0) )
+		printf( "I should go to city %c\n", cities[0] );
+	else
+		printf( "I should go to city %c\n", cities[1] );
+
 	return 0;
 
 }

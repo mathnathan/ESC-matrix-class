@@ -23,6 +23,10 @@ class Mat {
 		Mat col( int j );
 		// Overload the () operator for element extraction
 		double operator()( int i, int j );
+		// Overload the assignment operator
+		Mat operator=( Mat B );
+		// Overload the equivalency operatro
+		bool operator==( Mat B );
         // This is the matrix multiplication routine
         Mat mul( const Mat& B );
         // This is the matrix addition routine
